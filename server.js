@@ -129,6 +129,19 @@ app.get('/', (req, res) => {
   });
 });
 
+// 📚 PRODUCTS ROUTES
+
+// Get all products
+app.get('/collection/Products', async (req, res) => {
+  try {
+    const products = await db.collection('Products').find({}).toArray();
+    res.json(products);
+  } catch (err) {
+    console.error('Error fetching products:', err);
+    res.status(500).json({ message: 'Failed to fetch products', error: err.message });
+  }
+});
+
 // 👤 AUTHENTICATION ROUTES
 
 // Register route
@@ -234,18 +247,7 @@ app.post('/auth/login', validateLogin, async (req, res) => {
   }
 });
 
-// 📚 PRODUCTS ROUTES
 
-// Get all products
-app.get('/collection/Products', async (req, res) => {
-  try {
-    const products = await db.collection('Products').find({}).toArray();
-    res.json(products);
-  } catch (err) {
-    console.error('Error fetching products:', err);
-    res.status(500).json({ message: 'Failed to fetch products', error: err.message });
-  }
-});
 
 // Search products
 app.get('/collection/Products/search', async (req, res) => {
