@@ -23,6 +23,9 @@ app.use(express.static('public')); // For serving static files
 
 // 📁 Serve static files (images)
 app.use('/images', express.static(path.join(__dirname, 'images')));
+ app.get('/images/book1.jpeg', (req, res) => {
+        console.log("Request for image received");
+        });
 
 // MongoDB connection
 let db;
@@ -35,9 +38,7 @@ MongoClient.connect(MONGO_URI, {
   db = client.db('Bookstore');
   console.log('✅ Connected to MongoDB');
   
-  // Initialize sample data if needed
-  // initializeSampleData();
-
+  
   app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}`);
   });
@@ -103,7 +104,12 @@ const validateLogin = (req, res, next) => {
   next();
 };
 
+
 // 🏠 Root route
+
+    app.get('/', (req, res) => {
+        res.send('Select a collection, e.g., /collection/messages');
+        });
 app.get('/', (req, res) => {
   res.json({ 
     message: 'RapidReads API Server', 
@@ -570,7 +576,7 @@ app.use('*', (req, res) => {
   });
 });
 
-// 🛑 Graceful shutdown
+// shutdown
 process.on('SIGINT', () => {
   console.log('\n🛑 Shutting down server gracefully...');
   process.exit(0);
