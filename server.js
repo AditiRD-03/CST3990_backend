@@ -11,12 +11,12 @@ const JWT_SECRET = process.env.JWT_SECRET || 'rapidread_secret_key';
 const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://Orange123:Orange123@cluster0.hhguvm7.mongodb.net/Bookstore?retryWrites=true&w=majority';
 
 // ✅ CORS Configuration
-app.use(cors({
-  origin: ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://localhost:3000', 'https://aditird-03.github.io/CST3990_frontend/'],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+// app.use(cors({
+//   origin: ['http://localhost:5500', 'http://127.0.0.1:5500', 'http://localhost:3000', 'https://aditird-03.github.io/CST3990_frontend/'],
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }));
 
 app.use(express.json());
 app.use(express.static('public')); // For serving static files
